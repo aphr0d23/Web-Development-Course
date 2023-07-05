@@ -1,0 +1,454 @@
+/* root color / warna dasar dari file html // :root adalah css pseudo-class */
+:root {
+  --primary: #b6895b;
+  --bg: #010101;
+}
+
+/* * adalah all selector */
+/* css dibawah mengatur box model yang akan digunakan */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+/* scroll nya menjadi smooth dan halus saat berpindah section */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg);
+  color: #fff;
+}
+
+.navbar {
+  /* display flex mengacu pada flexbox */
+  display: flex;
+  /* membuat content berada di sejajar horizontal */
+  justify-content: space-between;
+  /* membuat content berada sejajar secara vertical */
+  align-items: center;
+  /* satuan rem = relatif terhadap 16px (jika tidak di atur pada root */
+  padding: 1.4rem 7%;
+  /* rgb ditambah a = rgba dapat mengatur transparansi */
+  background-color: rgba(1, 1, 1, 0.8);
+  /* mengatur border */
+  border-bottom: 1px solid #513c28;
+  /* agar posisi navbar tidak bergerak */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* berguna untuk mengatur tumpukan / diberi 9999 karna akan membuat navbar selalu diatas*/
+  z-index: 9999;
+}
+
+/* sintax seperti ini mengambil class navbar-logo didalam class navabr */
+.navbar .navbar-logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.navbar .navbar-logo span {
+  color: var(--primary);
+}
+
+.navbar .navbar-nav a {
+  color: #fff;
+  /* mengatur  margin tanpa turun kebawah*/
+  display: inline-block;
+  font-size: 1.3rem;
+  margin: 0 1rem;
+}
+
+/* hover mengubah target saat mouse menyentuh targer */
+.navbar .navbar-nav a:hover {
+  color: var(--primary);
+}
+
+/* ::after selector memasukan sintaks dibawah setelah tag a */
+.navbar .navbar-nav a::after {
+  /* membuat garis bawah  */
+  content: "";
+  display: block;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid var(--primary);
+  /* membuat garis bawah menjadi ukuran 0 dulu agar bisa dimunculkan saat di sentuh */
+  transform: scaleX(0);
+  /* transisi dari 0 ke 0.5(transform sintaks selanjutnya) */
+  transition: 0.2s linear;
+}
+
+.navbar .navbar-nav a:hover::after {
+  transform: scaleX(0.5);
+}
+
+.navbar .navbar-extra a {
+  color: #fff;
+  /* 0 pertama mengatur margin atas bawah, 0.5 kedua mengatur kiri kanan */
+  margin: 0 0.5rem;
+}
+/* mengatur hover pada navbar extra */
+.navbar .navbar-extra a:hover {
+  color: var(--primary);
+}
+
+/* menghilangkan menu agar bisa dimunculkan pada saat layar mengecil dan menggantikan nav-extra */
+#hamburger-menu {
+  display: none;
+}
+
+/* Hero Section */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  /* mencari gambar background / fungsi .. untuk mencari gambar diluar folder file ini */
+  background-image: url("../KEDAI KOPI/img/header.jpg");
+  background-repeat: no-repeat;
+  /* agar memenuhi layar */
+  background-size: cover;
+  /* agar ditengah */
+  background-position: center;
+  /* dikasih position relative agar posisi pada .hero::after dapat menggunakan position absolute */
+  position: relative;
+}
+
+.hero::after {
+  /* '' pada content agar ada content tapi kosong agar bisa di style */
+  content: "";
+  display: block;
+  /* menggunakan posisiton absolute dengan syarat posisi pembungkus atau parent nya menggunakan relative */
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  bottom: 0;
+  /* agar background menjadi gradasi dibawah */
+  background: linear-gradient(
+    0deg,
+    rgba(1, 1, 3, 1) 8%,
+    rgba(255, 255, 255, 0) 25%
+  );
+}
+
+.hero .content {
+  padding: 1.4rem 7%;
+  max-width: 60rem;
+}
+
+.hero .content h1 {
+  font-size: 5em;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+  line-height: 1.2;
+}
+
+.hero .content h1 span {
+  color: var(--primary);
+}
+
+.hero .content p {
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  line-height: 1.4;
+  font-weight: 100;
+  text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+}
+
+.hero .content .cta {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 1rem 3rem;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: #7c5b3b;
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+}
+
+/* About Section */
+
+.about,
+.menu,
+.contact {
+  padding: 8rem 7% 1.4rem;
+}
+/* penggunaan koma (, .menu h2) untuk sekaligus merubah section .about dan . menu */
+.about h2,
+.menu h2,
+.contact h2 {
+  text-align: center;
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+}
+
+.about h2 span,
+.menu h2 span,
+.contact h2 span {
+  color: var(--primary);
+}
+
+.about .row {
+  display: flex;
+  justify-content: center;
+}
+
+.about .row .about-img {
+  flex: 1 1 45rem;
+}
+
+.about .row .about-img img {
+  width: 100%;
+}
+
+.about .row .content {
+  flex: 1 1 35rem;
+  padding: 0 1rem;
+}
+
+.about .row .content h3 {
+  font-size: 1.8rem;
+}
+
+.about .row .content p {
+  margin-bottom: 0.8 rem;
+  font-size: 1.4rem;
+  font-weight: 100;
+  line-height: 1.6;
+}
+
+/* Menu Section */
+.menu h2,
+.contact h2 {
+  margin-bottom: 1rem;
+}
+
+.menu p,
+.contact p {
+  text-align: center;
+  max-width: 30rem;
+  margin: auto;
+  font-weight: 100;
+  line-height: 1.6;
+}
+
+.menu .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+  justify-content: center;
+}
+
+.menu .row .menu-card {
+  text-align: center;
+  padding-bottom: 1rem;
+  max-width: 20rem;
+}
+
+.menu .row .menu-card img {
+  border-radius: 50%;
+  width: 80%;
+}
+
+.menu .row .menu-card .menu-card-title {
+  margin: 1rem auto 0.5rem;
+}
+
+/* Contact Section */
+.contact .row {
+  display: flex;
+  margin-top: 2rem;
+  background-color: #222;
+}
+
+.contact .row .map {
+  flex: 1 1 45rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.contact .row form {
+  flex: 1 1 45rem;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.contact .row form .input-group {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  background-color: var(--bg);
+  border: 1px solid #eee;
+  padding-left: 2rem;
+}
+
+.contact .row form .input-group input {
+  width: 100%;
+  padding: 2rem;
+  font-size: 1.7rem;
+  background: none;
+  color: #fff;
+}
+
+.contact .row form .btn {
+  margin-top: 3rem;
+  display: inline-block;
+  padding: 1rem 3rem;
+  font-size: 1.7rem;
+  color: #fff;
+  background-color: var(--primary);
+  /* cursor pointer berguna saat pointing item, cursor berubah jadi gambar tangan */
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary);
+  text-align: center;
+  padding: 1rem 0 3rem;
+  margin-top: 3rem;
+}
+
+footer .socials {
+  padding: 1rem;
+}
+
+footer .socials a {
+  color: #fff;
+  margin: 1rem;
+}
+
+footer .socials a:hover,
+footer .links a:hover {
+  color: var(--bg);
+}
+
+footer .links {
+  margin-bottom: 1.6rem;
+}
+
+footer .links a {
+  color: #fff;
+  padding: 0.7rem 1rem;
+}
+
+footer .credit {
+  font-size: 0.8rem;
+}
+
+footer .credit a {
+  color: var(--bg);
+  font-weight: 700;
+}
+
+/* Media Queries */
+/* membuat website responsive dan berganti ke setingan responsive breakpoint device*/
+
+/* Laptop */
+@media (max-width: 1366px) {
+  html {
+    font-size: 75%;
+  }
+}
+
+/* Tablet */
+@media (max-width: 758px) {
+  html {
+    font-size: 62.5%;
+  }
+
+  #hamburger-menu {
+    display: inline-block;
+  }
+
+  .navbar .navbar-nav {
+    /* mengatur posision absolute agar mudah digerakkan tanpa mengganggu box lain */
+    position: absolute;
+    top: 100%;
+    /* menyimpan menu ke kanan 100 persen keluar  */
+    right: -100%;
+    background-color: #fff;
+    width: 30rem;
+    /* satuan vh adalah viewport height */
+    height: 100vh;
+    transition: 0.3s;
+  }
+
+  .navbar .navbar-nav.active {
+    right: 0;
+  }
+
+  .navbar .navbar-nav a {
+    color: var(--bg);
+    display: block;
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+  }
+
+  .navbar .navbar-nav a::after {
+    /* transform origin mengatur posisi transform element / mengatur posisi underline menjadi kekiri*/
+    transform-origin: 0 0;
+  }
+
+  .navbar .navbar-nav a:hover::after {
+    transform: scaleX(0.2);
+  }
+
+  .about .row {
+    flex-wrap: wrap;
+  }
+
+  .about .row .about-img img {
+    height: 24rem;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .about .row .content {
+    padding: 0;
+  }
+
+  .about .row .content h3 {
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+
+  .about .row .content p {
+    font-size: 1.6rem;
+  }
+
+  .menu p {
+    font-size: 1.2rem;
+  }
+
+  .menu .row .menu-card {
+    max-width: 25rem;
+  }
+
+  .contact .row {
+    flex-wrap: wrap;
+  }
+
+  .contact .row .map {
+    height: 30rem;
+  }
+
+  .contact .row form {
+    padding-top: 0;
+  }
+}
+
+/* Movile Phone */
+@media (max-width: 450px) {
+  html {
+    font-size: 55%;
+  }
+}
